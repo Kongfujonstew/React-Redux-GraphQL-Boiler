@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore } from 'redux';
-import RootContainer from './rootContainer';
+import { Provider } from 'react-redux';
+import { Router } from './Router';
 
 import reducers from '../redux/reducers/index';
 
@@ -12,4 +13,10 @@ const store = createStore(reducers);
 
 // console.log('store on creation at main: ', store.getState());
 
-ReactDOM.render(<RootContainer store={store}/>, document.getElementById('main'));
+ReactDOM.render(
+  <Provider store={store}>
+    <Router />
+  </Provider>, 
+  document.getElementById('main')
+);
+

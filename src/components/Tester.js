@@ -3,27 +3,21 @@ import {render} from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { changeLoggedInStatus } from '../redux/actions/index';
-
-import { Parent } from './parent';
+import { Parent } from './Parent';
 import { Child } from './child';
 
-
-class RootContainer extends React.Component {
-  consoleSomething () {
-    console.log(this.props);
-    this.props.login();
-  }
-
+class Container extends React.Component {
   render () {
     return (
-      <div>
-        <div> Hello from Root, props.loggedIn = {this.props.number}</div>
+      <div
+      >
+        <div> Hello from RootContainer</div>
         { this.props.loggedIn ?
           <Child /> :
           <Parent />
         }
         <div
-          onClick={this.consoleSomething.bind(this)}
+          onClick={this.props.login}
         >Click to login
         </div>
         <div
@@ -34,7 +28,6 @@ class RootContainer extends React.Component {
     )
   }
 }
-
 
 function mapStateToProps(state) {
   return {
@@ -50,6 +43,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-const RootContainerConnect = connect(mapStateToProps, mapDispatchToProps)(RootContainer);
+export const Tester = connect(mapStateToProps, mapDispatchToProps)(Container);
 
-export default RootContainerConnect;
+// export default Tester;
