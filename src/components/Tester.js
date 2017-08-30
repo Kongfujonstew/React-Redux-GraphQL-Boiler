@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { changeLoggedInStatus } from '../redux/actions/index';
+import { login, logout } from '../redux/actions/index';
 import { Parent } from './Parent';
 import { Child } from './child';
 
@@ -38,8 +38,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    login: () => {dispatch(changeLoggedInStatus('LOGIN'))},
-    logout: () => {dispatch(changeLoggedInStatus('LOGOUT'))}
+    login: () => {dispatch(login())},
+    logout: () => {dispatch(logout())}
   };
 }
 

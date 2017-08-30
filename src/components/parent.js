@@ -8,7 +8,7 @@ export class Parent extends React.Component {
   render () {
     return (
       <div>
-        <div> Hello from Parent - Not Loggedin</div>
+        <div> Hello from NEW - Not Loggedin</div>
       </div>
     )
   }

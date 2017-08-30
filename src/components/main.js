@@ -1,22 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+// import { AppContainer } from 'react-hot-loader';
 import { Router } from './Router';
 
-import reducers from '../redux/reducers/index';
 
-// import promiseMiddleware from 'redux-promise-middleware';
-// import thunk from 'redux-thunk';
 
-const store = createStore(reducers);
+console.log('store on creation at main: ', store.getState());
 
-// console.log('store on creation at main: ', store.getState());
+ReactDOM.render(<Router />, document.getElementById('main'));
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router />
-  </Provider>, 
-  document.getElementById('main')
-);
+
+
+
+
+
+
+// const rootEl = document.getElementById('main');
+// const render = Component =>
+//   ReactDOM.render(
+//     <AppContainer>
+//       <Router />
+//     </AppContainer>,
+//     rootEl
+//   );
+
+// render(Router);
+// if (module.hot) module.hot.accept('./Router', () => render(Router));
 

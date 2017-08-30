@@ -1,17 +1,17 @@
-export default function (state = {
+import * as reducers from './reducers';
+
+const defaultState = {
   loggedIn: false,
   error: '',
   number: 7
-}, action) {
+}
+
+export default (state = defaultState, action) => {
   switch (action.type) {
     case 'LOGIN' :
-      return {
-        loggedIn: true
-      };
+      return reducers.login();
     case 'LOGOUT' :
-      return {
-        loggedIn: false
-      };
+      return reducers.logout();
     default:
       return state;
   }

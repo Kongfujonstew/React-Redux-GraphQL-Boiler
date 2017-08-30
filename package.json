@@ -7,8 +7,8 @@
     "lint": "eslint src/admin/*.js src/components/*.js src/redux/**/*.js; exit 0",
     "test": "test",
     "start": "nodemon app.js --exec babel-node --presets babel-preset-es2015",
-    "dev": "webpack -d --watch",
-    "build": "webpack -p"
+    "dev": "NODE_ENV='development' webpack-dev-server --progress --inline",
+    "build": "NODE_ENV='production' webpack --env.prod -p"
   },
   "repository": "\"\"",
   "keywords": [],
@@ -37,6 +37,7 @@
     "react-dom": "^15.6.1",
     "react-redux": "^5.0.6",
     "react-router": "^4.1.2",
+    "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
     "sequelize": "^4.4.2",
     "yarn": "^0.27.5"
