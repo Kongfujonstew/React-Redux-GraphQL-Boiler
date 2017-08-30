@@ -3,21 +3,19 @@ import {render} from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { login, logout } from '../redux/actions/index';
-import { Parent } from './Parent';
-import { Child } from './child';
 
 class Container extends React.Component {
   render () {
     return (
       <div
       >
-        <div> Hello from RootContainer</div>
+        <div> Hello from LoggedIn status Tester</div>
         { this.props.loggedIn ?
-          <Child /> :
-          <Parent />
+          <div>LoggedIN</div> :
+          <div>Not logged In</div>
         }
         <div
-          onClick={this.props.login}
+          onClick={() => console.log('this should be this.props.login')}
         >Click to login
         </div>
         <div
@@ -38,7 +36,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    login: () => {dispatch(login())},
+    // login: () => {dispatch(login())},
+    login: () => {() => {console.log('hi')}},
     logout: () => {dispatch(logout())}
   };
 }
