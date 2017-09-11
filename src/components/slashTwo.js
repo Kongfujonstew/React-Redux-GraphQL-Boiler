@@ -2,6 +2,6 @@ import React from 'react';
 
 export const slashTwo = () => {
   return (
-    <div>Hello 2</div>
+    <div>Hello from slash 2</div>
   )
 }

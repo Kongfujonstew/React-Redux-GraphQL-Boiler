@@ -5,23 +5,17 @@ import { bindActionCreators } from 'redux';
 import { login, logout } from '../redux/actions/index';
 
 class Container extends React.Component {
+
+
+  moveSomewhere () {
+    console.log('moveSomewhere fired')
+  }
+
   render () {
     return (
-      <div
-      >
-        <div> Hello from LoggedIn status Tester</div>
-        { this.props.loggedIn ?
-          <div>LoggedIN</div> :
-          <div>Not logged In</div>
-        }
-        <div
-          onClick={() => console.log('this should be this.props.login')}
-        >Click to login
-        </div>
-        <div
-          onClick={this.props.logout}
-        >Click to log out
-        </div>
+      <div>
+        <div> Hello from  Tester</div>
+        <div onClick={this.moveSomewhere.bind(this)}> click here to login </div>
       </div>
     )
   }
@@ -37,7 +31,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     // login: () => {dispatch(login())},
-    login: () => {() => {console.log('hi')}},
+    login: () => {console.log('hi')},
     logout: () => {dispatch(logout())}
   };
 }

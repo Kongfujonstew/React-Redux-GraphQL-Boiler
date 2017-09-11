@@ -10,7 +10,7 @@
     "dev": "NODE_ENV='development' webpack-dev-server --progress --inline",
     "build": "NODE_ENV='production' webpack --env.prod -p"
   },
-  "repository": "\"\"",
+  "repository": "https://github.com/Kongfujonstew/React-Redux-GraphQL-Boiler.git",
   "keywords": [],
   "author": "JMS",
   "license": "ISC",

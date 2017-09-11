@@ -8,6 +8,7 @@ import { makeExecutableSchema } from 'graphql-tools';
 import typeDefs from './graphQL/schema';
 import resolvers from './graphQL/resolvers';
 import models from './models';
+
 const schema = makeExecutableSchema({
   typeDefs,
   resolvers
@@ -32,6 +33,7 @@ const app = express();
 const port = process.env.PORT || 8081;
 
 app.use(morgan('dev'));
+app.use(express.static('public'));
 
 app.use('/graphiql', graphiqlExpress({
   endPointURL: '/graphql'
@@ -50,7 +52,7 @@ app.use((req, res) => {
 
   if (context.url) {
     res.redirect(context.url);
-  }
+  };
 
   res.write(template({body}));
   res.end();

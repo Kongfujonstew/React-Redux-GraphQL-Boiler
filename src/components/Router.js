@@ -15,13 +15,16 @@ const store = createStore(reducers);
 export class Router extends React.Component {
   render () {
     return (
-      <Provider store={store}>    
+      <div>
+      <div>Place header here</div>
+      <Provider store={store}>
         <Switch>
-          <Route path="/slashtwo" component={Tester} />
+          <Route path="/test" component={Tester} />
           <Route path="/slashtwo" component={slashTwo} />
           <Route path="/" component={slash} />
         </Switch>
       </Provider>
+      </div>
     )
   }
 }

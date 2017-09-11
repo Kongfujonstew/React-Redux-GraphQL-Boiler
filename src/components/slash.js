@@ -2,6 +2,9 @@ import React from 'react';
 
 export const slash = () => {
   return (
-    <div>Hello Dere</div>
+    <div>
+      <div>Hello Dere from slash</div>
+      <a href="test">navigate to props tester</a>
+    </div>
   )
 }
