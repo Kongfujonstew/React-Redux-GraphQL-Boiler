@@ -5,22 +5,25 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 console.log('Building  . . . process.env.NODE_ENV: ', process.env.NODE_ENV);
 
 module.exports = (env) => {
-  return { 
+  return {
+    name: 'main',
+    target: 'web',
     context: resolve('src'),
-    entry: [
+    entry: 
+    // [
       // 'react-hot-loader/patch',
 
       // 'webpack-dev-server/client?http://localhost:9000',
 
       // 'webpack/hot/only-dev-server',
 
-      './components/main.js'
+      './components/browserApp.js',
 
       // Uncomment this line to recompile the admin page w/ graphiql interface
       // admin: './admin/admin.js'
-    ],
+    // ],
     output: {
-      filename: '[name].js',
+      filename: 'main.js',
       path: resolve('src/public')
     },
     resolve: {
@@ -37,19 +40,23 @@ module.exports = (env) => {
         {
           test: /\.css$/,
           loader: ExtractTextPlugin.extract({
-            fallbackLoader: 'style',
-            loader: 'css'
+            fallback: 'style',
+            use: 'css'
           }),
         }
       ]
     },
-    devServer: {
-      contentBase: resolve('src'),
-      compress: true,
-      port: 9000,
-      hot: true,
-      historyApiFallback: true
-    }
+    // devServer: {
+    //   contentBase: resolve('src'),
+    //   compress: true,
+    //   port: 9000,
+    //   hot: true,
+    //   historyApiFallback: true
+    // },
+
+    plugins: [
+      new ExtractTextPlugin('bundle.css', {allChunks: true})
+    ]
     // plugins: [
     // new webpack.HotModuleReplacementPlugin(),
     // // enable HMR globally
@@ -62,6 +69,3 @@ module.exports = (env) => {
     // ],
   }
 };
-
-
-

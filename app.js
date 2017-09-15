@@ -1,5 +1,6 @@
 import express from 'express';
 import morgan from 'morgan';
+import path from 'path';
 
 //GraphQL imports
 import bodyParser from 'body-parser';
@@ -14,6 +15,19 @@ const schema = makeExecutableSchema({
   resolvers
 });
 
+
+//Instatiate server and set routes & middleware
+const app = express();
+const port = process.env.PORT || 8081;
+app.use(morgan('dev'));
+
+app.use(express.static(path.resolve(__dirname, './src/public')));
+app.use('/graphiql', graphiqlExpress({
+  endPointURL: '/graphql'
+}));
+
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { models } }));
+
 //Server Render React and React-Router
 import React from 'react';
 const ReactRouter = require('react-router-dom');
@@ -22,32 +36,29 @@ import ReactDOMServer from 'react-dom/server';
 import _ from 'lodash';
 import fs from 'fs';
 
-const StaticRouter = ReactRouter.StaticRouter;
-const baseTemplate = fs.readFileSync('./src/index.html');
+import { Provider } from 'react-redux';
+import { StaticRouter } from 'react-router-dom';
+
+const baseTemplate = fs.readFileSync('./src/templates/index.html');
 const template = _.template(baseTemplate);
 
-import { Router } from './src/components/Router';
+import Main from './src/components/Main';
 
-//Instatiate server and set routes & middleware
-const app = express();
-const port = process.env.PORT || 8081;
+import { createStore, applyMiddleware } from "redux";
+import reducers from './src/redux/reducers';
+const store = createStore(reducers);
 
-app.use(morgan('dev'));
-app.use(express.static('public'));
-
-app.use('/graphiql', graphiqlExpress({
-  endPointURL: '/graphql'
-}));
-
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { models } }));
 
 app.use((req, res) => {
-  console.log(req.url)
+  console.log('app.use about to renderToString, req.url: ', req.url);
+  const location = req.url;
   const context = {};
   const body = ReactDOMServer.renderToString(
-    React.createElement(StaticRouter, {location: req.url, context},
-      React.createElement(Router)
-    )
+    <Provider store={store}>
+      <StaticRouter location={location} context={context}>
+        <Main />
+      </StaticRouter>
+    </Provider>
   );
 
   if (context.url) {

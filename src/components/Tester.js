@@ -15,7 +15,7 @@ class Container extends React.Component {
     return (
       <div>
         <div> Hello from  Tester</div>
-        <div onClick={this.moveSomewhere.bind(this)}> click here to login </div>
+        <div onClick={() => {console.log('hi')}}> click here to login </div>
       </div>
     )
   }
