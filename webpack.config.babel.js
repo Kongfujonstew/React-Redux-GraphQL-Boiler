@@ -17,13 +17,15 @@ module.exports = (env) => {
 
       // 'webpack/hot/only-dev-server',
 
-      './components/browserApp.js',
+      {app: './application/browserApp.js'
+      // admin: './components/admin/Admin.js'
+      },
 
       // Uncomment this line to recompile the admin page w/ graphiql interface
       // admin: './admin/admin.js'
     // ],
     output: {
-      filename: 'main.js',
+      filename: '[name].js',
       path: resolve('src/public')
     },
     resolve: {

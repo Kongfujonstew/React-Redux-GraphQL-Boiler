@@ -3,15 +3,15 @@ import * as reducers from './reducers';
 const defaultState = {
   loggedIn: false,
   error: '',
-  number: 7
+  num: 7
 }
 
 export default (state = defaultState, action) => {
   switch (action.type) {
     case 'LOGIN' :
-      return reducers.login();
+      return reducers.login(state, action);
     case 'LOGOUT' :
-      return reducers.logout();
+      return reducers.logout(state, action);
     default:
       return state;
   }

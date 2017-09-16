@@ -1,3 +1,7 @@
+#admin {
+  height: 100%;
+}
+
 .graphiql-container,
 .graphiql-container button,
 .graphiql-container input {
@@ -33,6 +37,7 @@
 }
 
 .graphiql-container .editorWrap {
+  height: 700px; 
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

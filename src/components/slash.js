@@ -5,7 +5,7 @@ export const slash = () => {
     <div>
       <div
         onClick={() => console.log('hi from slash')}
-      >Hello Dere from slash</div>
+      >Hello Dere from slash </div>
       <a href="test">navigate to props tester</a>
     </div>
   )

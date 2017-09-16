@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { StaticRouter, Switch, Route } from 'react-router-dom';
 
-import { slash } from './slash';
+import { Lander } from './Lander';
 import { slashTwo } from './slashTwo';
 import { Tester } from './Tester';
 
@@ -22,7 +22,7 @@ class Main extends React.Component {
       <Switch>
         <Route path="/test" component={Tester} />
         <Route path="/slashtwo" component={slashTwo} />
-        <Route path="/" component={slash} />
+        <Route path="/" component={Lander} />
       </Switch>
     )
   }
