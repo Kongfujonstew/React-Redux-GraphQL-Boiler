@@ -4,9 +4,11 @@ const defaultState = {
   loggedIn: false,
   error: '',
   num: 7
-}
+};
+
 
 export default (state = defaultState, action) => {
+  console.log('running reducers, state: ', state);
   switch (action.type) {
     case 'LOGIN' :
       return reducers.login(state, action);
@@ -14,8 +16,8 @@ export default (state = defaultState, action) => {
       return reducers.logout(state, action);
     default:
       return state;
-  }
-}
+  };
+};
 
 
 // export default function (state = {

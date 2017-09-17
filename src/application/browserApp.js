@@ -1,8 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { StaticRouter } from 'react-router-dom';
+import { BrowserRouter, browserHistory } from 'react-router-dom';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+// import { browserHistory } from 'react-router';
 import reducers from '../redux/reducers/index';
 
 import Main from '../components/Main.js';
@@ -10,11 +11,14 @@ import Main from '../components/Main.js';
 const store = createStore(reducers);
 const context = {};
 
-console.log('store state: ', store.getState());
+console.log('app.js bootstraps. store state: ', store.getState());
 
 render(<Provider store={store}>
-        <StaticRouter location={window.location} context={context}>
+        <BrowserRouter
+          location={window.location}
+          context={context}
+        >
           <Main />
-        </StaticRouter>
+        </BrowserRouter>
       </Provider>, 
   document.getElementById('main'));

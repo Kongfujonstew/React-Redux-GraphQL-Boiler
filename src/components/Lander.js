@@ -2,26 +2,53 @@ import React from 'react';
 import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 import { login, logout } from '../redux/actions/index';
+import navigation from '../navigation/index';
+
+import { Login } from './Login';
 
 class Container extends React.Component {
 
   componentDidMount() {
-    console.log('Lander mount, props: ', this.props)
-    // console.log('getState: ', this.props.getState());
+
+  }
+
+  testButton () {
+    console.log('goToTester fired');
+    // console.log('history length: ', history.length);
+    // console.log('state: ', window.history.state);
+    // history.pushState({hello: "hello"}, null, 'http://localhost:8081/dragons');
+    // window.location = 'http://localhost:8081/test';
+    // window.history.go('http://localhost:8081/test');
+    // console.log('state again: ', window.history.state);
+  }
+
+  goToTest () {
+    navigation.navigateTo('http://localhost:8081/test');
+  }
+
+  goBack () {
+    navigation.back();
   }
 
   render () {
     return (
       <div>
         Hi this is Lander test prop num = {this.props.num} 
-        <div>You are loggedIn: {this.props.loggedIn.toString()}</div>
+        <Login />
         <div
-          onClick={this.props.login}
-        >Login</div>
+          onClick={this.testButton.bind(this)}
+        >Test Butto</div>
         <div
-          onClick={this.props.logout}
-        >Logout</div>
+          onClick={this.goToTest.bind(this)}
+        >Go To Test now</div>
+        <div
+          onClick={this.goBack.bind(this)}
+        >Go Back</div>
+        <Link 
+          to={`/test`}
+        >Here is a link</Link>
       </div>
     )
   }

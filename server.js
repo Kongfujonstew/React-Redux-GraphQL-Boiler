@@ -24,7 +24,16 @@ const app = express();
 const port = process.env.PORT || 8081;
 app.use(morgan('dev'));
 
+//authentication -- needs to be moved b/cinterrupts admin etc
+import cookieParser from 'cookie-parser';
+import autho from './src/middleware/auth/index';
+import verifyLogin from './src/middleware/auth/verifyLogin';
+app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, './src/public')));
+
+app.use('/login', verifyLogin);
+
+app.use(autho);
 
 app.use('/graphiql', graphiqlExpress({
   endPointURL: '/graphql'

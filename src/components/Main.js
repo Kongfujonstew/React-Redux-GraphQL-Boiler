@@ -1,29 +1,32 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { StaticRouter, Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import { Lander } from './Lander';
 import { slashTwo } from './slashTwo';
 import { Tester } from './Tester';
 
 
-console.log('heres a random console.log in Main');
-
-// const store = createStore(reducers);
-
 class Main extends React.Component {
 
   componentDidMount() {
-    console.log('Router on mount')
+    console.log('seeting');
+    // history.pushState(null, null, '/test');
+    window.addEventListener('popstate', (e) => {
+      // alert('hi')
+      // e.preventDefault();
+      // history.go(1)
+      console.log('popstate triggered; here is e: ', e);
+    })
   }
 
   render () {
     return (
-      <Switch>
-        <Route path="/test" component={Tester} />
-        <Route path="/slashtwo" component={slashTwo} />
-        <Route path="/" component={Lander} />
-      </Switch>
+      <div>
+        <Route path="/test" exact component={Tester} />
+        <Route path="/slashtwo" exact component={slashTwo} />
+        <Route path="/" exact component={Lander} />
+      </div>
     )
   }
 }

@@ -11,11 +11,29 @@ class Container extends React.Component {
     console.log('moveSomewhere fired')
   }
 
+  goBack () {
+    history.back();
+  }
+
+  getState () {
+    if (window) {
+      console.log(window.applicationCache);
+    } else {
+      console.log('hahah!');
+    }
+  }
+
   render () {
     return (
       <div>
         <div> Hello from  Tester</div>
+        <div
+          onClick={this.getState.bind(this)}
+        >Push State</div>
         <div onClick={() => {console.log('hi')}}> click here to login </div>
+        <div
+          onClick={this.goBack.bind(this)}
+        >Go Back</div>
       </div>
     )
   }
