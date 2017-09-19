@@ -17,7 +17,9 @@ module.exports = (env) => {
 
       // 'webpack/hot/only-dev-server',
 
-      {app: './application/browserApp.js'
+      {
+        app: './application/browserApp.js',
+        welcome: './components/welcome/Welcome.js'
       // admin: './components/admin/Admin.js'
       },
 

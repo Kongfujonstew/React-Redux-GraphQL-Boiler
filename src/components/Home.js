@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { login, logout } from '../redux/actions/index';
 import navigation from '../navigation/index';
 
-import { Login } from './Login';
+// import { Login } from './Login';
 
 class Container extends React.Component {
 
@@ -35,8 +35,7 @@ class Container extends React.Component {
   render () {
     return (
       <div>
-        Hi this is Lander test prop num = {this.props.num} 
-        <Login />
+        Hi this is Home test prop num = {this.props.num} 
         <div
           onClick={this.testButton.bind(this)}
         >Test Butto</div>
@@ -68,4 +67,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export const Lander = connect(mapStateToProps, mapDispatchToProps)(Container);
+export const Home = connect(mapStateToProps, mapDispatchToProps)(Container);
