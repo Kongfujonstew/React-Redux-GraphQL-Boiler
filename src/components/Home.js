@@ -4,9 +4,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 import { login, logout, incrementNumber } from '../redux/actions/index';
-import navigation from '../navigation/index';
-
-// import { Login } from './Login';
 
 class Container extends React.Component {
 
