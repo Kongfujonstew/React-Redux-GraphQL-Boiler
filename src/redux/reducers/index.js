@@ -3,17 +3,18 @@ import * as reducers from './reducers';
 const defaultState = {
   loggedIn: false,
   error: '',
-  num: 7
+  num: 6
 };
 
 
 export default (state = defaultState, action) => {
-  console.log('running reducers, state: ', state);
   switch (action.type) {
     case 'LOGIN' :
       return reducers.login(state, action);
     case 'LOGOUT' :
       return reducers.logout(state, action);
+    case 'INCREMENTNUMBER' :
+      return reducers.incrementNumber(state, action);
     default:
       return state;
   };

@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from './actions';
+import { LOGIN, LOGOUT, INCREMENTNUMBER } from './actions';
 
 
 export const login = (state, action) => {
@@ -10,5 +10,11 @@ export const login = (state, action) => {
 export const logout = (state, action) => {
   return {
     type: LOGOUT
-  }
+  };
+};
+
+export const incrementNumber = (state, action) => {
+  return {
+    type: INCREMENTNUMBER
+  };
 };
