@@ -1,5 +1,4 @@
 import verifyLogin from './verifyLogin';
-import welcome from '../../templates/welcome';
 
 export default (req, res, next) => {
   console.log('autho triggered, cookies: ', req.cookies);
@@ -7,7 +6,7 @@ export default (req, res, next) => {
   let loggedIn = false;  //add logic here; toggle for testing
 
   if (!loggedIn) {
-    const template = welcome;
+    const template = 'You are not logged in! This message set in src/middleware/auth/index.js';
 
     res.write(template);
     res.end();

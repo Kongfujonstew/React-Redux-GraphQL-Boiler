@@ -33,7 +33,7 @@ app.use(express.static(path.resolve(__dirname, './src/public')));
 
 app.use('/login', verifyLogin);
 
-app.use(autho);
+// app.use(autho);
 
 app.use('/graphiql', graphiqlExpress({
   endPointURL: '/graphql'

@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import Main from '../components/Main';
 import reducers from '../redux/reducers';
-import home from '../templates/home';
+import index from '../templates/index';
 import header from '../templates/header';
 import footer from '../templates/footer';
 
@@ -25,7 +25,7 @@ export default (req, res) => {
     </Provider>
   );
 
-  const template = home(header, footer, body);
+  const template = index(header, footer, body);
 
   if (context.url) {
     res.redirect(context.url);

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
-import { login, logout } from '../redux/actions/index';
+import { login, logout, incrementNumber } from '../redux/actions/index';
 import navigation from '../navigation/index';
 
 // import { Login } from './Login';
@@ -15,39 +15,19 @@ class Container extends React.Component {
   }
 
   testButton () {
-    console.log('goToTester fired');
-    // console.log('history length: ', history.length);
-    // console.log('state: ', window.history.state);
-    // history.pushState({hello: "hello"}, null, 'http://localhost:8081/dragons');
-    // window.location = 'http://localhost:8081/test';
-    // window.history.go('http://localhost:8081/test');
-    // console.log('state again: ', window.history.state);
-  }
-
-  goToTest () {
-    navigation.navigateTo('http://localhost:8081/test');
-  }
-
-  goBack () {
-    navigation.back();
+    this.props.incrementNumber();
   }
 
   render () {
     return (
       <div>
-        Hi this is Home test prop num = {this.props.num} 
+        Home - test redux store: this.props.num initializes at 6 . . . {this.props.num} 
         <div
           onClick={this.testButton.bind(this)}
-        >Test Butto</div>
-        <div
-          onClick={this.goToTest.bind(this)}
-        >Go To Test now</div>
-        <div
-          onClick={this.goBack.bind(this)}
-        >Go Back</div>
+        >Test Button - test increment store value num</div>
         <Link 
           to={`/test`}
-        >Here is a link</Link>
+        >Test link, travels to test via React Router</Link>
       </div>
     )
   }
@@ -63,7 +43,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     login: () => {dispatch(login())},
-    logout: () => {dispatch(logout())}
+    logout: () => {dispatch(logout())},
+    incrementNumber: () => {dispatch(incrementNumber())}
   };
 }
 

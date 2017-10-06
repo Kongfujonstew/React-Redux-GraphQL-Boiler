@@ -10,14 +10,6 @@ import { Tester } from './Tester';
 class Main extends React.Component {
 
   componentDidMount() {
-    console.log('seeting');
-    // history.pushState(null, null, '/test');
-    window.addEventListener('popstate', (e) => {
-      // alert('hi')
-      // e.preventDefault();
-      // history.go(1)
-      console.log('popstate triggered; here is e: ', e);
-    })
   }
 
   render () {
