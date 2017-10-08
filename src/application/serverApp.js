@@ -17,15 +17,15 @@ const store = createStore(reducers);
 export default (req, res) => {
   const location = req.url;
   const context = {};
-  const body = ReactDOMServer.renderToString(
-    <Provider store={store}>
-      <StaticRouter location={location} context={context}>
-        <Main />
-      </StaticRouter>
-    </Provider>
-  );
+  // const body = ReactDOMServer.renderToString(
+  //   <Provider store={store}>
+  //     <StaticRouter location={location} context={context}>
+  //       <Main />
+  //     </StaticRouter>
+  //   </Provider>
+  // );
 
-  const template = index(header, footer, body);
+  const template = index(header, footer, null);
 
   if (context.url) {
     res.redirect(context.url);

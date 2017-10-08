@@ -9,15 +9,39 @@ import adminApp from './src/application/adminApp';
 //GraphQL imports
 import bodyParser from 'body-parser';
 import { graphiqlExpress, graphqlExpress } from 'graphql-server-express';
-import { makeExecutableSchema } from 'graphql-tools';
-import typeDefs from './graphQL/schema';
-import resolvers from './graphQL/resolvers';
-import models from './models';
+// import { makeExecutableSchema } from 'graphql-tools';
+// import typeDefs from './graphQL/schema';
+// import resolvers from './graphQL/resolvers';
+// import models from './models';
 
-const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers
-});
+import schema from './graphQL/schema.js';
+
+import { graphql } from 'graphql';
+
+
+import fs from 'fs';
+import { introspectionQuery, printSchema } from 'graphql';
+
+
+// Save JSON of full schema introspection for Babel Relay Plugin to use
+// graphql(schema, introspectionQuery).then(result => {
+//   fs.writeFileSync(
+//     `graphQL/schema.json`,
+//     JSON.stringify(result, null, 2)
+//   );
+// });
+
+// // Save user readable type system shorthand of schema
+// fs.writeFileSync(
+//   `graphQL/schema.graphql`,
+//   printSchema(schema)
+// );
+
+
+
+
+
+
 
 //Instatiate server and set routes & middleware
 const app = express();
@@ -39,7 +63,20 @@ app.use('/graphiql', graphiqlExpress({
   endPointURL: '/graphql'
 }));
 
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { models } }));
+// app.use('/graphql', bodyParser.json(), graphqlExpress({ schema, context: { models } }));
+
+app.use(bodyParser.json());
+
+app.post('/graphql', (req, res) => {
+  console.log('req.body: ', req.body);
+  graphql(schema, req.body.query)
+  .then((result) => {
+    // console.log('result', result);
+    res.send(JSON.stringify(result/*, null, 2*/));
+  });
+});
+
+
 
 app.use('/admin', (req, res) => {
   adminApp(req, res);
@@ -51,5 +88,6 @@ app.use((req, res) => {
 
 //sync with db then create server
 if (module === require.main) {
-  models.sequelize.sync().then(() => app.listen(port));
+  app.listen(port);
+  // models.sequelize.sync().then(() => app.listen(port));
 };

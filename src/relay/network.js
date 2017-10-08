@@ -17,6 +17,7 @@ const fetchQuery = (operation, variables, cacheConfig, uploadables) => {
 }
 
 export default () => {
+  console.log('creating network')
   return Network.create(fetchQuery);
 };
 

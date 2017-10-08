@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 console.log('Building  . . . process.env.NODE_ENV: ', process.env.NODE_ENV);
 
@@ -11,20 +11,14 @@ module.exports = (env) => {
     context: resolve('src'),
     entry: 
     // [
-      // 'react-hot-loader/patch',
-
-      // 'webpack-dev-server/client?http://localhost:9000',
-
-      // 'webpack/hot/only-dev-server',
 
       {
         app: './application/browserApp.js'
 
-      // admin: './components/admin/Admin.js'
+      // Uncomment this line and braces to recompile the admin page w/ graphiql interface
+        // admin: './components/admin/Admin.js'
       },
 
-      // Uncomment this line to recompile the admin page w/ graphiql interface
-      // admin: './admin/admin.js'
     // ],
     output: {
       filename: '[name].js',
@@ -40,27 +34,20 @@ module.exports = (env) => {
           test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel-loader'
-        },
-        {
-          test: /\.css$/,
-          loader: ExtractTextPlugin.extract({
-            fallback: 'style',
-            use: 'css'
-          }),
         }
+        // {
+        //   test: /\.css$/,
+        //   loader: ExtractTextPlugin.extract({
+        //     fallback: 'style',
+        //     use: 'css'
+        //   }),
+        // }
       ]
-    },
-    // devServer: {
-    //   contentBase: resolve('src'),
-    //   compress: true,
-    //   port: 9000,
-    //   hot: true,
-    //   historyApiFallback: true
-    // },
+    }
 
-    plugins: [
-      new ExtractTextPlugin('bundle.css', {allChunks: true})
-    ]
+    // plugins: [
+    //   new ExtractTextPlugin('bundle.css', {allChunks: true})
+    // ]
     // plugins: [
     // new webpack.HotModuleReplacementPlugin(),
     // // enable HMR globally

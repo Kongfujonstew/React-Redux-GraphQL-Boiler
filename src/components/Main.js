@@ -6,6 +6,10 @@ import { Home } from './Home';
 import { slashTwo } from './slashTwo';
 import { Tester } from './Tester';
 
+import RelayRoot from '../components_relay/RelayRoot';
+
+
+
 
 class Main extends React.Component {
 
@@ -18,6 +22,7 @@ class Main extends React.Component {
         <Route path="/test" exact component={Tester} />
         <Route path="/slashtwo" exact component={slashTwo} />
         <Route path="/" exact component={Home} />
+        <RelayRoot />
       </div>
     )
   }
