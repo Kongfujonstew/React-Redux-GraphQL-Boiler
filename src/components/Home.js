@@ -13,10 +13,10 @@ class Container extends React.Component {
   render () {
     return (
       <div>
-        Home. this.props.num on redux store initializes at 6: {this.props.num}
+        Home. this.props.num on Redux store initializes at 6: {this.props.num}
         <div
           onClick={this.testButton.bind(this)}
-        >Test Button - test increment store value num</div>
+        >Test Button - Click here to increment this.props.num on Redux store</div>
         <Link 
           to={`/test`}
         >Test link, travels to test via React Router</Link>

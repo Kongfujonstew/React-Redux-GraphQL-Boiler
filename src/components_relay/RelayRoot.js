@@ -17,7 +17,7 @@ export default () => {
         return <div>{error.message}</div>;
       } else if (props) {
         console.log('this is props: ', props);
-        return <div>RelayRoot. graphql returns 2 here if successful: {props.count}</div>;
+        return <div>RelayRoot. Relay performs a graphql 'count' query, this should be 2: {props.count}</div>;
       }
       return <div>Loading</div>;
     }}

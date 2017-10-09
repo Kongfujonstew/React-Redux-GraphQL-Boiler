@@ -16,8 +16,8 @@ class Main extends React.Component {
   render () {
     return (
       <div>
-        <Route path="/test" exact component={Tester} />
         <RelayRoot />
+        <Route path="/test" exact component={Tester} />
         <Route path="/" exact component={Home} />
       </div>
     )

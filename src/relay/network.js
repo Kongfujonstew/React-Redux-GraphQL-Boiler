@@ -9,7 +9,7 @@ const fetchQuery = (operation, variables, cacheConfig, uploadables) => {
       'content-type': 'application/json'
     },
     query: operation.text,
-    variables, //this is empty; not sure why
+    variables
   }).then(response => {
     return response.data;
   });
