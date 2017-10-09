@@ -6,11 +6,6 @@ import { Link } from 'react-router-dom';
 import { login, logout, incrementNumber } from '../redux/actions/index';
 
 class Container extends React.Component {
-
-  componentDidMount() {
-
-  }
-
   testButton () {
     this.props.incrementNumber();
   }
@@ -18,7 +13,7 @@ class Container extends React.Component {
   render () {
     return (
       <div>
-        Home - test redux store: this.props.num initializes at 6 . . . {this.props.num} 
+        Home. this.props.num on redux store initializes at 6: {this.props.num}
         <div
           onClick={this.testButton.bind(this)}
         >Test Button - test increment store value num</div>

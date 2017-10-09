@@ -1,23 +1,51 @@
-import {
-  GraphQLObjectType,
-  GraphQLSchema,
-  GraphQLInt
-} from 'graphql';
+import { graphql, buildSchema } from 'graphql';
+import { makeExecutableSchema } from 'graphql-tools'
 
-let count = 7;
+import resolvers from './resolvers';
 
-let schema = new GraphQLSchema({
-  query: new GraphQLObjectType({
-    name: 'RelayRootQuery',
-    fields: {
-      count: {
-        type: GraphQLInt,
-        resolve: function() {
-          return count;
-        }
-      }
-    }
-  })
-});
+const typeDefs = `
+schema {
+  query: Query
+  mutation: Mutation
+}
+
+type Query {
+  users: [User]
+  user: User
+  messages: [Message]
+  message: Message
+  count: Int
+}
+
+type Mutation {
+  addUser(name:String, password:String): User
+  addMessage(user:Int!, text:String!): Message
+}
+
+type User {
+  id: ID!
+  name: String!
+  password: String!
+}
+
+type UserInput {
+  name: String!
+  password: String!
+}
+
+type Message {
+  id: ID!
+  user: ID!
+  date: Date
+  text: String!
+}
+
+scalar Date {
+  date: Int
+}
+
+`
+
+const schema = makeExecutableSchema({typeDefs, resolvers})
 
 export default schema;

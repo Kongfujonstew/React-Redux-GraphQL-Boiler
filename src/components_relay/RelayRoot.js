@@ -1,25 +1,23 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { QueryRenderer, graphql} from 'react-relay/compat';
-
-// import { graphql } from 'graphql'
-
-// import query from './__generated__/RelayRootQuery.graphql.js';
-
-import environment from '../relay/environment';
+import createEnvironment from '../relay/environment';
+const environment = createEnvironment();
 
 export default () => {
+  //variables attr line 13 NOT correctly passed to fetchQuery in network.js ???
   return <QueryRenderer
-    environment={environment()}
+    environment={environment}
     query={ graphql`query RelayRootQuery {count}`}
 
-    variables={{placeholdervar: 5}}
+    variables={{placeholder: 'value'}}
 
     render={({error, props}) => {
       if (error) {
         return <div>{error.message}</div>;
       } else if (props) {
-        return <div>{'eh'} is great!</div>;
+        console.log('this is props: ', props);
+        return <div>RelayRoot. graphql returns 2 here if successful: {props.count}</div>;
       }
       return <div>Loading</div>;
     }}

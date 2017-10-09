@@ -1,3 +1,24 @@
+
+
+
+
+//UNUSED . . . graphql query string practice
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 query Greeting ($input: String!) {
     hello(input: $input)
 }
